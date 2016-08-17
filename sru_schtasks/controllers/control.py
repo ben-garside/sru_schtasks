@@ -4,6 +4,9 @@ import schtasks_shim as schtasks
 import logging
 
 
+logger  = logging.getLogger(__name__)
+
+
 def run_by_name(**kw):
     msg = {}
     try:
