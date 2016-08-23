@@ -10,7 +10,7 @@ Link
 """
 from distutils.core import setup
 
-version = "0.1.0"
+version = "0.1.1"
 
 setup(
     name="sru_schtasks",
@@ -18,18 +18,21 @@ setup(
     author="Benjamin Garside",
     author_email="abgarside<at>gmail<dot>com",
     packages=[
-        "sru_schtasks"
+        "sru_schtasks",
+        "sru_schtasks.routes",
+        "sru_schtasks.conf",
+        "sru_schtasks.helpers",
+        "sru_schtasks.controllers"
         ],
     include_package_data=True,
     url="http://github.com/ben-garside/sru_schtasks/dist/{}/".format(version),
-
-    # license="LICENSE.txt",
     description="schtasks SRU package",
-    long_description=open("README.md").read(),
-    # Dependent packages (distributions)
+    dependency_links=[
+        "https://github.com/ben-garside/schtasks_shim/tarball/master#egg=schtasks_shim-0.1.1'"
+    ],
     install_requires=[
         "voluptuous",
         "aiohttp",
-        "git+https://github.com/ben-garside/schtasks_shim"
+        "schtasks_shim>=0.1.1"
     ],
 )

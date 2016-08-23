@@ -1,6 +1,6 @@
-from sru.routes import windows
+from . import schtasks
 
-
-app.router.add_route("POST", "/schtasks/query", schtasks.query)
-app.router.add_route("POST", "/schtasks/edit", schtasks.edit)
-app.router.add_route("POST", "/schtasks/control", schtasks.control)
+def setup(app):
+    app.router.add_route("POST", "/schtasks/query", schtasks.query)
+    app.router.add_route("POST", "/schtasks/edit", schtasks.edit)
+    app.router.add_route("POST", "/schtasks/control", schtasks.control)
