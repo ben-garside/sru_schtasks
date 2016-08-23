@@ -1,7 +1,7 @@
 ---
 package:
     label   : SRU Package Manager
-    desc    : SRU Pagage to control the adding and removing of SRU Packages
+    desc    : SRU Package to control the adding and removing of SRU Packages
     version : 0.1.0
     methods :
         run_by_name :
