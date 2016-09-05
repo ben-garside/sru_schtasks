@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 def not_found(**kw):
     msg = {
         "message": "invalid Action requested",
+        "result" : [],
         "code": 404
     }
 
@@ -53,10 +54,11 @@ def get_by_name(**kw):
                     site_len = len(tasks)
                 else:
                     site_len = 1
+                    tasks = [tasks]
                 if tasks:
                     message = "{} task(s) found with name '{}' (with partial:{})".format(site_len, kw['name'], kw['partial'])
                     msg.update({
-                        'tasks': tasks,
+                        'result': tasks,
                         'message': message,
                         'code': 200
                     })
@@ -64,6 +66,7 @@ def get_by_name(**kw):
                 else:
                     message = "No tasks found with name '{}' (with partial:{})".format(kw['name'], kw['partial'])
                     msg.update({
+                        "result" : [],
                         'message': message,
                         'code': 404
                     })
@@ -72,6 +75,7 @@ def get_by_name(**kw):
                 message = "'name' type must be a string"
                 msg.update({
                     'message': message,
+                    "result" : [],
                     'code': 404
                 })
                 logger.debug(message)
@@ -79,11 +83,18 @@ def get_by_name(**kw):
             message = "The 'name' parameter is missing"
             msg.update({
                 'message': message,
+                "result" : [],
                 'code': 404
             })
             logger.debug(message)
     except Exception as e:
-        logger.error("'schtasks/get_by_name' fialed with Exception: {}".format(e))
+        message = "'schtasks/get_by_name' fialed with Exception: {}".format(e)
+        msg.update({
+            'message': message,
+            "result" : [],
+            'code': 501
+        })
+        logger.error(message)
     
     output = hc.encode(msg, json=True)
     return Response(body=output, content_type="application/json")
@@ -100,7 +111,7 @@ def get_by_status(**kw):
                     if len(tasks) > 0:
                         message = "{} tasks(s) found that are '{}'".format(len(tasks), kw['status'])
                         msg.update({
-                            'tasks': tasks,
+                            'result': tasks,
                             'message': message,
                             'code': 200
                         })
@@ -109,6 +120,7 @@ def get_by_status(**kw):
                         message = "No tasks are '{}'".format(kw['status'])
                         msg.update({
                             'message': message,
+                            "result" : [],
                             'code': 404
                         })
                         logger.debug(message)
@@ -116,6 +128,7 @@ def get_by_status(**kw):
                     message = 'status must be in: {}'.format(allowed_states)
                     msg.update({
                         'message': message,
+                        "result" : [],
                         'code': 404
                     })
                     logger.debug(message)
@@ -123,6 +136,7 @@ def get_by_status(**kw):
                 message = "'status' must be string"
                 msg.update({
                     'message': message,
+                    "result" : [],
                     'code': 404
                 })
                 logger.debug(message)
@@ -130,11 +144,18 @@ def get_by_status(**kw):
             message = "'state' parameter is missing"
             msg.update({
                 'message': message,
+                "result" : [],
                 'code': 404
             })
             logger.debug(message)
     except Exception as e:
-        logger.error("'sites/get_by_state' fialed with Exception: {}".format(e))
+        message = "'sites/get_by_state' fialed with Exception: {}".format(e)
+        msg.update({
+            'message': message,
+            "result" : [],
+            'code': 501
+        })
+        logger.error(message)
     
     output = hc.encode(msg, json=True)
     return Response(body=output, content_type="application/json")
