@@ -19,10 +19,6 @@ setup(
     author_email="abgarside<at>gmail<dot>com",
     packages=[
         "sru_schtasks",
-        "sru_schtasks.routes",
-        "sru_schtasks.conf",
-        "sru_schtasks.helpers",
-        "sru_schtasks.controllers"
         ],
     include_package_data=True,
     url="http://github.com/ben-garside/sru_schtasks/dist/{}/".format(version),
