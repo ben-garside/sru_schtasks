@@ -1,7 +1,7 @@
 from sru.support.web import Response
-import sru_schtasks.control as controlCtrl
-import sru_schtasks.edit as editCtrl
-import sru_schtasks.query as queryCtrl
+import .control as controlCtrl
+import .edit as editCtrl
+import .query as queryCtrl
 import logging
 
 
@@ -15,7 +15,7 @@ params = [
 async def control(request):
     data = await request.json()
     if all(k in params for k in data.keys()):
-        data.setdefault('action_param',{}) # set value if non provided
+        data.setdefault('action_param',{})
         action = getattr(controlCtrl, data['action'], controlCtrl.not_found)
         res = action(**data['action_param'])
         return res
@@ -26,7 +26,7 @@ async def control(request):
 async def edit(request):
     data = await request.json()
     if all(k in params for k in data.keys()):
-        data.setdefault('action_param',{}) # set value if non provided
+        data.setdefault('action_param',{})
         action = getattr(editCtrl, data['action'], editCtrl.not_found)
         res = action(**data['action_param'])
         return res
@@ -37,7 +37,7 @@ async def edit(request):
 async def query(request):
     data = await request.json()
     if all(k in params for k in data.keys()):
-        data.setdefault('action_param',{}) # set value if non provided
+        data.setdefault('action_param',{})
         action = getattr(queryCtrl, data['action'], queryCtrl.not_found)
         res = action(**data['action_param'])
         return res
