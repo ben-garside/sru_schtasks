@@ -18,7 +18,7 @@ setup(
     author="Benjamin Garside",
     author_email="abgarside<at>gmail<dot>com",
     packages=[
-        "sru_schtasks",
+        "sru",
         ],
     include_package_data=True,
     url="http://github.com/ben-garside/sru_schtasks/dist/{}/".format(version),
