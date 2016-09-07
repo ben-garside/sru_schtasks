@@ -1,6 +1,6 @@
 from sru.support.web import Response
 from sru.support import data_process as hc
-import sru.packages.schtasks_shim as schtasks
+import schtasks_shim as schtasks
 import logging
 
 
