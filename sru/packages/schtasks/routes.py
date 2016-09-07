@@ -1,7 +1,7 @@
 from sru.support.web import Response
-import .control as controlCtrl
-import .edit as editCtrl
-import .query as queryCtrl
+import control as controlCtrl
+import edit as editCtrl
+import query as queryCtrl
 import logging
 
 
